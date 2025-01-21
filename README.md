@@ -8,8 +8,7 @@
   </h1>
 
   <strong>🇺🇦 Always open the right browser 🇺🇦</strong><br>
-  [![GitHub start](https://badgen.net/github/stars/johnste/finicky?color=pink&icon=github)](https://GitHub.com/johnste/finicky/)
-  [![GitHub release](https://badgen.net/github/release/johnste/finicky/stable?color=purple)](https://GitHub.com/johnste/finicky/releases/)
+    [![GitHub release](https://badgen.net/github/release/johnste/finicky/stable?color=purple)](https://GitHub.com/johnste/finicky/releases/)
 
 </div>
 
@@ -18,10 +17,6 @@ Finicky is a macOS application that allows you to set up rules that decide which
 - Decide what urls to open in what browser or app
 - Edit urls before opening them
 - Complete control over configuration using JavaScript
-
-<div align="center">
-<img src="https://raw.githubusercontent.com/johnste/finicky/gh-pages/Screenshot.png" alt="Finicky screenshot" width="75%"/>
-</div>
 
 ## Table of Contents
 
@@ -36,10 +31,6 @@ Finicky is a macOS application that allows you to set up rules that decide which
 - [Alternatives](#alternatives)
 - [Building Finicky from source](#building-finicky-from-source)
 - [Current status of Finicky development](#current-status-of-finicky-development)
-- [Issues](#issues)
-  - [Bugs](#bugs)
-  - [Feature Requests](#feature-requests)
-  - [Questions](#questions)
 - [License](#license)
 
 
@@ -91,7 +82,11 @@ See the [documentation](#documentation) for all the features Finicky supports.
 
 ## Documentation
 
-Finicky has extensive support for matching, rewriting and starting browsers or other application that handle urls. See the wiki for the [full configuration documentation](https://github.com/johnste/finicky/wiki/Configuration) explaining all available, APIs and options as well as detail information on how to match on urls.
+Outdated right now
+
+## Configuration tips
+
+Outdated right now
 
 ## Alternatives
 
@@ -108,18 +103,6 @@ If you'd like to build Finicky from source:
 ## Current status of Finicky development
 
 I am working on a new version of Finicky, rewritten in Go. 
-
-## Issues
-
-### Bugs
-
-Please file an issue for bugs, missing documentation, or unexpected behavior.
-
-[**See Bugs**](https://github.com/johnste/finicky/issues?q=is%3aopen+is%3aissue+label%3abug)
-
-### Feature Requests
-
-[**See Feature Requests**](https://github.com/johnste/finicky/labels/feature%20request)
 
 ### Questions
 
