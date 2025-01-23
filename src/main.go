@@ -12,6 +12,7 @@ import (
 	"embed"
 	"encoding/json"
 	"finicky/browser"
+	"finicky/shorturl"
 	"fmt"
 	"io"
 	"log"
@@ -40,6 +41,8 @@ type URLInfo struct {
 
 var urlListener chan URLInfo = make(chan URLInfo)
 var file *os.File
+
+var namespace = "finickyConfig"
 
 func main() {
 
@@ -106,8 +109,6 @@ func HandleURL(url *C.char, name *C.char, bundleID *C.char, path *C.char, pid C.
 	}
 }
 
-var namespace = "finickyConfig"
-
 func prepareConfig() (string, string, error) {
 	simpleConfigPath, errSimple := getSimpleConfigPath()
 	configPath, err := getConfigPath()
@@ -115,8 +116,16 @@ func prepareConfig() (string, string, error) {
 		return "", "", fmt.Errorf("failed to get config or simple config: %v", err)
 	}
 
-	log.Printf("Found config path: %s", configPath)
-	log.Printf("Found simple config path: %s", simpleConfigPath)
+	if configPath == "" {
+		log.Printf("Found config path: <None>")
+	} else {
+		log.Printf("Found config path: %s", configPath)
+	}
+	if simpleConfigPath == "" {
+		log.Printf("Found simple config path: <None>")
+	} else {
+		log.Printf("Found simple config path: %s", simpleConfigPath)
+	}
 
 	if configPath != "" {
 		bundlePath := os.TempDir() + "/finicky_output.js"
@@ -267,7 +276,15 @@ func evaluateURL(url string, pid int32, opener *ProcessInfo) error {
 
 	log.Printf("Evaluating URL: %s, PID: %d, Opener: %+v", url, pid, opener)
 
-	vm.Set("url", url)
+	resolvedURL, err := shorturl.ResolveURL(url)
+	if err != nil {
+		log.Printf("Failed to resolve short URL: %v", err)
+		// Continue with original URL if resolution fails
+	} else {
+		url = resolvedURL
+	}
+
+	vm.Set("url", resolvedURL)
 	vm.Set("opener", opener)
 	vm.Set("pid", pid)
 
