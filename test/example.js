@@ -24,7 +24,8 @@ export default {
       },
       {
         match: () => {
-          console.log(finicky.getKeys());
+          console.log(finicky.getModifierKeys());
+          console.log(finicky.getSystemInfo());
           return false;
         },
         url: (url) => url,

@@ -242,7 +242,8 @@ func evaluateURL(url string, pid int32, opener *ProcessInfo) error {
 		finicky[key] = userAPI.Get(key)
 	}
 
-	finicky["getKeys"] = getKeys
+	finicky["getModifierKeys"] = getModifierKeys
+	finicky["getSystemInfo"] = getSystemInfo
 	vm.Set("finicky", finicky)
 
 	if content != nil {
@@ -347,7 +348,7 @@ func closeLogger() {
 	defer file.Close()
 }
 
-func getKeys() map[string]bool {
+func getModifierKeys() map[string]bool {
 	keys := C.getModifierKeys()
 	return map[string]bool{
 		"shift":    bool(keys.shift),
@@ -356,5 +357,13 @@ func getKeys() map[string]bool {
 		"control":  bool(keys.control),
 		"capsLock": bool(keys.capsLock),
 		"fn":       bool(keys.fn),
+	}
+}
+
+func getSystemInfo() map[string]string {
+	info := C.getSystemInfo()
+	return map[string]string{
+		"localizedName": C.GoString(info.localizedName),
+		"name":          C.GoString(info.name),
 	}
 }

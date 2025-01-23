@@ -24,4 +24,11 @@ typedef struct {
 ModifierKeys getModifierKeys(void);
 void RunApp();
 
+typedef struct {
+    const char* localizedName;
+    const char* name;
+} SystemInfo;
+
+SystemInfo getSystemInfo(void);
+
 #endif /* MAIN_H */

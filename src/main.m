@@ -14,8 +14,8 @@
 }
 
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event
-           withReplyEvent:(NSAppleEventDescriptor *)replyEvent {    
-    
+           withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+
     int32_t pid = [[event attributeDescriptorForKeyword:keySenderPIDAttr] int32Value];
 
     NSRunningApplication *application = [NSRunningApplication runningApplicationWithProcessIdentifier:pid];
@@ -60,5 +60,17 @@ void RunApp() {
     BrowseAppDelegate *app = [BrowseAppDelegate alloc];
     [NSApp setDelegate:app];
     [NSApp run];
+}
+
+SystemInfo getSystemInfo() {
+    NSHost *currentHost = [NSHost currentHost];
+    NSString *localizedNameStr = [currentHost localizedName] ?: @"";
+    NSString *nameStr = [currentHost name] ?: @"";
+
+    SystemInfo info = {
+        .localizedName = [localizedNameStr UTF8String],
+        .name = [nameStr UTF8String]
+    };
+    return info;
 }
 
