@@ -22,6 +22,13 @@ export default {
         match: '*query=value*',
         url: (url ) => url,
       },
+      {
+        match: () => {
+          console.log(finicky.getKeys());
+          return false;
+        },
+        url: (url) => url,
+      }
       // {
       //   match: "https://slack-redir.net/link?url=*",
       //   url: (url ) => url,

@@ -51,14 +51,11 @@ func main() {
 	if err != nil {
 		log.Printf("failed checking if default browser is set: %v", err)
 	}
+
 	if !is_default_browser {
 		log.Println("Is not the default browser")
 	} else {
 		log.Println("Is the default browser")
-	}
-
-	if os.Getenv("DEBUG") == "true" {
-		evaluateURL("https://example.com/path?query=value#fragment", 1, nil)
 	}
 
 	go func() {
@@ -235,6 +232,8 @@ func evaluateURL(url string, pid int32, opener *ProcessInfo) error {
 	for _, key := range userAPI.Keys() {
 		finicky[key] = userAPI.Get(key)
 	}
+
+	finicky["getKeys"] = getKeys
 	vm.Set("finicky", finicky)
 
 	if content != nil {
@@ -329,4 +328,16 @@ func setupLogger() {
 func closeLogger() {
 	log.Println("Application closed!")
 	defer file.Close()
+}
+
+func getKeys() map[string]bool {
+	keys := C.getModifierKeys()
+	return map[string]bool{
+		"shift":    bool(keys.shift),
+		"option":   bool(keys.option),
+		"command":  bool(keys.command),
+		"control":  bool(keys.control),
+		"capsLock": bool(keys.capsLock),
+		"fn":       bool(keys.fn),
+	}
 }

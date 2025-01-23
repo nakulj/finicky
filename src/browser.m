@@ -74,8 +74,7 @@ bool setDefaultHandlerForURLScheme(const char* bundleId, const char* scheme) {
                 NSLog(@"Successfully set default handler for scheme: %@", schemeStr);
             }
         }];
-
-        NSLog(@"Setting default application for scheme?");
+        
         return true;
     }
 }

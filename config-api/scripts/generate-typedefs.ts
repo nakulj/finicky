@@ -12,6 +12,14 @@ const output = `
 
 interface FinickyUtils {
     matchHostnames: (hostnames: string[]) => (url: URL) => boolean;
+    getKeys: () => {
+        shift: boolean;
+        option: boolean;
+        command: boolean;
+        control: boolean;
+        capsLock: boolean;
+        fn: boolean;
+    };
 }
     
 declare global {

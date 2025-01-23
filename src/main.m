@@ -38,7 +38,21 @@
 
     HandleURL((char*)url, (char*)name, (char*)bundleID, (char*)path, pid);
 }
+
 @end
+
+ModifierKeys getModifierKeys() {
+    NSEventModifierFlags flags = [NSEvent modifierFlags];
+    ModifierKeys keys = {
+        .shift = (flags & NSEventModifierFlagShift) != 0,
+        .option = (flags & NSEventModifierFlagOption) != 0,
+        .command = (flags & NSEventModifierFlagCommand) != 0,
+        .control = (flags & NSEventModifierFlagControl) != 0,
+        .capsLock = (flags & NSEventModifierFlagCapsLock) != 0,
+        .fn = (flags & NSEventModifierFlagFunction) != 0
+    };
+    return keys;
+}
 
 void RunApp() {
     [NSAutoreleasePool new];
@@ -46,5 +60,5 @@ void RunApp() {
     BrowseAppDelegate *app = [BrowseAppDelegate alloc];
     [NSApp setDelegate:app];
     [NSApp run];
-  }
+}
 

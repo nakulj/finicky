@@ -111,3 +111,5 @@ Have any other questions or need help? Please feel free to reach out to me on [B
 ## License
 
 [MIT](https://raw.githubusercontent.com/johnste/finicky/master/LICENSE)
+
+Icon designed by [@uetchy](https://github.com/uetchy)
